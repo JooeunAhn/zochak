@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Zocbo
 from .forms import ZocboForm
 
@@ -7,6 +8,7 @@ def index(request):
     return render(request, "blog/index.html", {})
 
 
+@login_required
 def zocbo_list(request):
     zocbo_list = Zocbo.objects.all()
     return render(request, "blog/zocbo_list.html", {
@@ -14,6 +16,7 @@ def zocbo_list(request):
         })
 
 
+@login_required
 def zocbo_detail(request, pk):
     zocbo = get_object_or_404(Zocbo, pk=pk)
     return render(request, "blog/zocbo_detail.html", {
@@ -21,6 +24,7 @@ def zocbo_detail(request, pk):
         })
 
 
+@login_required
 def zocbo_new(request):
     if request.method == "POST":
         form = ZocboForm(request.POST, request.FILES)

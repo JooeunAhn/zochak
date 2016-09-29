@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
     url(r'^blog/', include('blog.urls', namespace="blog")),
+    url(r'^accounts/', include("accounts.urls", namespace="accounts")),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
