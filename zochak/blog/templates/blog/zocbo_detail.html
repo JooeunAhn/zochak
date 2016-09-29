@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{zocbo.name}}<br/>
+{{zocbo.author}}<br/>
+{{zocbo.subject}}<br/>
+{{zocbo.content}}<br/>
+<a href="{{zocbo.file.url}}">첨부파일</a>
+
+{% endblock %}
