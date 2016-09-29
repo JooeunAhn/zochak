@@ -38,3 +38,31 @@ def zocbo_new(request):
     return render(request, "forms.html", {
         "form": form,
         })
+
+
+@login_required
+def zocbo_edit(request, pk):
+    zocbo = get_object_or_404(Zocbo, pk=pk)
+    if request.method == "POST" and request.user == zocbo.author:
+        form = ZocboForm(request.POST, request.FILES, instance=zocbo)
+        if form.is_valid():
+            form.save()
+            return redirect("blog:zocbo_detail", zocbo.pk)
+    else:
+        form = ZocboForm(instance=zocbo)
+    return render(request, "forms.html",{
+        "form":form,
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
